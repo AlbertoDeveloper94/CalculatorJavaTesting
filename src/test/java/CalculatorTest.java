@@ -33,4 +33,20 @@ public class CalculatorTest {
     public void substractTwoNumbers(int number1,int number2, int result){
         assertEquals(result, calculadora.substract(number1,number2));
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "1,1,1",
+            "2,3,6",
+            "-2,-3,6",
+            "3,-2,-6",
+            "-3,2,-6",
+            "2,0,0"
+    })
+
+    public void multiplyTwoNumbers(int number1,int number2, int result){
+        assertEquals(result, calculadora.multiply(number1,number2));
+    }
+
+
 }
