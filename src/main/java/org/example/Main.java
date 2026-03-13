@@ -1,17 +1,55 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import org.example.calculator.Calculator;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Main {
     static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+        Calculator calculator = new Calculator();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
+        Scanner inputUser = new Scanner(System.in);
+        try {
+            System.out.println("Introduce el primer número");
+            int number1 = inputUser.nextInt();
+
+            System.out.println("Introduce el segundo número");
+            int number2 = inputUser.nextInt();
+
+            System.out.println("Introduce la operación a realizar, elige el número");
+            System.out.println("1-. Sumar");
+            System.out.println("2-. Restar");
+            System.out.println("3-. Multiplicar");
+            System.out.println("4-. Dividir");
+            int operation = inputUser.nextInt();
+
+            if(operation == 1){
+                System.out.println("La suma de los dos números introducidos es: " + calculator.add(number1,number2));
+            }
+            if(operation == 2){
+                System.out.println("La resta de los dos números introducidos es: " + calculator.substract(number1,number2));
+            }
+            if(operation == 3){
+                System.out.println("La multiplicación de los dos números introducidos es: " + calculator.multiply(number1,number2));
+            }
+            if(operation == 4){
+                    try {
+                        System.out.println("La división de los dos números introducidos es: " + calculator.divide(number1,number2));
+                    }
+                    catch (ArithmeticException e){
+                        System.out.println(e.getMessage());
+                    }
+            }
+            if(operation<1 || operation>4){
+                System.out.println("Operación incorrecta");
+            }
         }
+        catch (InputMismatchException e) {
+            System.out.println("Debes escribir un número.");
+            inputUser.nextLine();
+        }
+
+
     }
 }
