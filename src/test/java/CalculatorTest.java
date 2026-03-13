@@ -61,4 +61,8 @@ public class CalculatorTest {
         assertEquals(result, calculadora.divide(number1,number2));
     }
 
+    @Test
+    void divideByZero() {
+        assertThrows(ArithmeticException.class, () -> calculadora.divide(5, 0));
+    }
 }
