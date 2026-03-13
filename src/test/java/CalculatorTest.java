@@ -48,5 +48,17 @@ public class CalculatorTest {
         assertEquals(result, calculadora.multiply(number1,number2));
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "1,1,1",
+            "6,3,2",
+            "-6,-3,2",
+            "6,-3,-2",
+            "-6,3,-2"
+    })
+
+    public void divideTwoNumbers(int number1,int number2, int result){
+        assertEquals(result, calculadora.divide(number1,number2));
+    }
 
 }
